@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="Customers.xsd" generated="2017-09-18T10:26:55">
+<Customers>
+<CNum>C100</CNum>
+<CustName>Sheldon</CustName>
+<Priority>20</Priority>
+<Hometown>Houston</Hometown>
+</Customers>
+<Customers>
+<CNum>C200</CNum>
+<CustName>Leonard</CustName>
+<Priority>10</Priority>
+<Hometown>Boston</Hometown>
+</Customers>
+<Customers>
+<CNum>C300</CNum>
+<CustName>Raj</CustName>
+<Priority>30</Priority>
+<Hometown>Boston</Hometown>
+</Customers>
+<Customers>
+<CNum>C400</CNum>
+<CustName>Penny</CustName>
+<Priority>20</Priority>
+<Hometown>Houston</Hometown>
+</Customers>
+<Customers>
+<CNum>C500</CNum>
+<CustName>Howard</CustName>
+<Priority>30</Priority>
+<Hometown>LosAngeles</Hometown>
+</Customers>
+</dataroot>

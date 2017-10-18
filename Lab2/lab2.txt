@@ -1,0 +1,70 @@
+#11
+SELECT DISTINCT	D.DNum
+FROM	Customers AS C, Restaurants AS R, Orders AS O
+WHERE	R.HQLocation = C.Hometown	
+AND	O.DNum	= O.CNum 
+AND	C.Cnum = O.CNum
+AND 	R.RNum	= O.RNum;
+
+#12
+SELECT DISTINCT	R.RestaurantName
+FROM	Customers AS C, Restaurants AS R, Orders AS O
+WHERE	(R.HQLocation <> C.Hometown) > 1	
+AND	O.RNum	= O.CNum 
+AND	C.CNum = O.CNum
+AND 	R.RNum	= O.RNum;
+
+
+#13
+SELECT DISTINCT	O.DNUM
+FROM Orders AS O
+WHERE O.CNum = O.DNum
+
+
+#14
+SELECT COUNT(*) AS R_TOTAL
+FROM Orders AS O
+WHERE O.CNum = 'C500'
+AND	C.CNum = O.CNum
+AND 	R.RNum	= O.RNum;
+
+#15
+SELECT COUNT(*) AS ORDER_QTY
+FROM Orders AS O
+WHERE O.CNum = 'C100'
+AND   O.DNum = 'D1'
+AND   C.CNum = O.CNum
+AND    R.RNum = O.RNum;
+
+#16
+SELECT	O.DNum, O.RNum, O.QTY
+FROM Customers AS C, Restaurants AS R, Orders AS O
+WHERE O.DNum = O.RNum
+AND   D.DNum = O.DNum
+AND    R.RNum	= O.RNum;
+
+#17
+SELECT O.DNum, AVG(O.QTY) AS ORDER_QTY_AVG		
+FROM Orders AS O
+WHERE O.ORDER_QTY_AVG > 3;
+
+#18
+SELECT	R.RestaurantName, COUNT(*)
+FROM	Orders AS O, Ccustomers AS C
+WHERE	C.CustName = 'Sheldon'
+AND   C.CNum = O.CNum;
+
+#19
+SELECT	D.ListPrice
+FROM	Orders AS O, Ccustomers AS C, Dishes AS D
+WHERE	C.CustName = 'Sheldon'
+AND	O.CNum = O.DNum
+AND   D.DNum = O.DNum
+AND   C.CNum = O.CNum;
+
+
+#20
+SELECT	D.DishName, 
+FROM 	Restaurants AS R, Dishes AS D
+WHERE	R.HQLocation = 'Houston'
+AND
