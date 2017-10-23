@@ -10,3 +10,11 @@ CREATE TABLE zActor(
 	agent_num 	INT 			NOT NULL);
 
 Describe zActor;
+
+--Primary Key: actor_num
+Alter Table zActor
+ADD CONSTRAINT constraint_actor_num_pk PRIMARY KEY (actor_num);
+
+--Foreign Key: agent_num references: zAgent
+Alter Table zActor
+ADD CONSTRAINT constraint_agent_num_fk FOREIGN KEY (agent_num) REFERENCES zAgent(agent_num);

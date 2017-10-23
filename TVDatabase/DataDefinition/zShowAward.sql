@@ -10,3 +10,18 @@ CREATE TABLE zShowAward(
 	award_year	INT				NOT NULL);
 
 Describe  zShowAward;
+
+--Primary Key: show_num award_name award_type award_year 
+Alter Table zShowAward
+ADD CONSTRAINT constraint_zShowAward_pk PRIMARY KEY (show_num, award_name, award_type, award_year);
+
+
+--Foreign Key: award_name award_type award_year references: zAward 
+
+Alter Table zShowAward
+ADD CONSTRAINT constraint_zShowAward_award_fk FOREIGN KEY (award_name, award_type, award_year) REFERENCES zAward(award_name, award_type, award_year);
+
+
+--Foreign Key: show_num references: zTVShow
+Alter Table zShowAward
+ADD CONSTRAINT constraint_zShowAward_show_fk FOREIGN KEY (show_num) REFERENCES zTVShow(show_num)

@@ -10,6 +10,11 @@ CREATE TABLE zAgent(
 
 Describe zAgent;
 
+--zAgent
+--Primary Key: agent_num
+Alter Table zAgent
+ADD CONSTRAINT constraint_agent_num_pk PRIMARY KEY (agent_num);
+
 
 
 

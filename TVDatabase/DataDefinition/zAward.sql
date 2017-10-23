@@ -9,3 +9,6 @@ CREATE TABLE zAward(
 	award_year	INT				NOT NULL);
 
 Describe zAward;
+
+Alter Table zAward
+ADD CONSTRAINT constraint_zAward_pk PRIMARY KEY (award_name, award_type, award_year);

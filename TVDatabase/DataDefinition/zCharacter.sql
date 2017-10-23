@@ -9,3 +9,8 @@ CREATE TABLE zCharacter(
 	char_age	INT				NOT NULL);
 
 Describe zCharacter;
+
+--zCharacter
+--Primary Key: char_num
+Alter Table zCharacter
+ADD CONSTRAINT constraint_char_num_pk PRIMARY KEY (char_num);

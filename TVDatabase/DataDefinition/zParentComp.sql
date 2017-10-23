@@ -9,3 +9,7 @@ CREATE TABLE zParentComp(
 	parent_loc	VARCHAR2(30)	NOT NULL);
 
 Describe  zParentComp;
+
+--Primary Key: parent_num
+Alter Table zParentComp
+ADD CONSTRAINT constraint_parent_num_pk PRIMARY KEY (parent_num);

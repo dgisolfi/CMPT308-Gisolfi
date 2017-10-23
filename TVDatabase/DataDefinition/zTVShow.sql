@@ -14,3 +14,15 @@ CREATE TABLE zTVShow(
 	distr_name 	VARCHAR2(30)	NOT NULL);
 
 Describe  zTVShow;
+
+--Primary Key: show_num
+Alter Table zTVShow
+ADD CONSTRAINT constraint_zTVShow_pk PRIMARY KEY (show_num);
+
+--Foreign Key: network_id references: zNetwork 
+Alter Table zTVShow
+ADD CONSTRAINT constraint_zTVShow_network_pk FOREIGN KEY (network_id) REFERENCES zNetwork(network_id)
+
+--Foreign Key: distr_name references: zDistributor
+Alter Table zTVShow
+ADD CONSTRAINT constraint_zTVShow_distr_pk FOREIGN KEY (distr_name) REFERENCES zDistributor(distr_name)
