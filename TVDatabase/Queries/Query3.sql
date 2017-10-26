@@ -3,8 +3,8 @@
 --Author: Daniel Gisolfi
 --TV Database
 
-SELECT A.agent_name, P.prod_name
-FROM zAgent AS A, zProducer AS P, zProducerBy AS Pby, zTVShow AS T, zNetwork AS N
+SELECT DISTINCT A.agent_name, P.prod_name
+FROM zAgent A, zProducer P, zProdBy Pby, zTVShow T, zNetwork N
 WHERE N.network_id = 'ABC'  OR N.network_id = 'CBS' OR N.network_id = 'NBC' 
 AND A.agent_num = P.agent_num
 AND P.prod_num = Pby.prod_num

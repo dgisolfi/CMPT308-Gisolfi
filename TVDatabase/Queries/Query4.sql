@@ -3,8 +3,12 @@
 --Author: Daniel Gisolfi
 --TV Database
 
-SELECT C.char_name, A.actor_name 
-FROM zCharacter AS C, zPlay AS Play, zActor AS A
-WHERE Count(actor_num) > 1
-AND C.char_num = Play.char_num
-AND Play.actor_num = A.actor_num 
+SELECT zCharacter.char_name, zActor.actor_name
+FROM zCharacter,zActor,zPlay
+WHERE zCharacter.char_num = zPlay.char_num
+AND zPlay.actor_num = zActor.actor_num 
+AND zPlay.actor_num IN
+       (SELECT zPlay.actor_num
+        FROM zPlay
+        GROUP BY (zPlay.actor_num, zPlay.show_num) 
+        HAVING COUNT(*)> 1);

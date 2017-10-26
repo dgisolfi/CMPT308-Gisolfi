@@ -3,11 +3,15 @@
 --Author: Daniel Gisolfi
 --TV Database
 
+SELECT Result.TV, SUM(Salary)
+FROM(SELECT T.show_name AS TV, Play.actor_salary AS Salary
+	FROM  zPlay Play, zTVShow T
+	WHERE Play.show_num = T.show_num
 
-SELECT T.show_name, SUM(Play.actor_salary, PBY.pprod_salary) AS payroll
-FROM zActor As A, zPlay AS Play, zAgent AS AG, zProducer AS P, zProducerBy AS PBY
-ORDER BY payroll DESC
-AND A.actor_num = play.actor_num
-AND A.agent_num = AG.agent_num
-AND AG.agent_num = P.agent_num
-AND P.prod_num = PBY.prod_num;
+	UNION
+
+	SELECT T.show_name AS TV, PBY.prod_salary AS Salary
+	FROM  zProdBy PBY, zTVShow T 
+	WHERE T.show_num = PBY.show_num) Result
+Group BY Result.TV
+ORDER BY SUM(Salary) DESC;
