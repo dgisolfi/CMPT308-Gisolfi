@@ -4,6 +4,21 @@
 --TV Database
 
 
-SELECT P.prod_name, P.prod_age
-FROM zProducer AS P, zProducerBy AS PBY, zTVshow AS T, zProdAward AS PAWD, zShowAward AS SAWD
-WHERE P.
+SELECT zProducer.prod_name,zProducer.prod_age
+
+FROM zProducer
+
+WHERE zProducer.prod_num NOT IN( 
+	SELECT zPRODAWARD.prod_num
+ 	FROM zProdAward                         
+)
+
+OR zProducer.prod_num IN(
+	SELECT zProdBy.prod_num
+  	FROM zProdBy
+  	WHERE zProdBy.show_num IN(
+  		SELECT zTVShow.show_num
+     	FROM zTVShow
+     	WHERE zTVSHOW.show_num NOT IN(
+     		SELECT zShowAward.show_num
+            FROM zShowAward)));
