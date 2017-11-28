@@ -11,7 +11,7 @@ CREATE TABLE Departments(
 
 
 
-CONSTRAINT pk_CNum PRIMARY KEY (dep_id);
+ADD CONSTRAINT pk_dep_id PRIMARY KEY (dep_id);
 
 INSERT INTO Customers (dep_id, dep_name, dep_location, dep_room)
 	VALUES ( 1, 'Desktop', 'Donnelly', 101);

@@ -8,7 +8,7 @@ CREATE TABLE Amends(
 	salary			int,		
 	wage 			DECIMAL(5,2));
 	
-CONSTRAINT fk_job_id_Amends FOREIGN KEY (job_id) REFERENCES Amends(job_id);
+ADD CONSTRAINT fk_job_id_Amends FOREIGN KEY (job_id) REFERENCES jobs(job_id);
 
 --Input all staff pay
 INSERT INTO Amends (job_id, salary)

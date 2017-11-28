@@ -9,8 +9,8 @@ CREATE TABLE Jobs(
 	job_name 		VARCHAR2(20)	NOT NULL,
 	job_descrp		VARCHAR2(40)	NOT NULL);
 
-CONSTRAINT pk_job_id PRIMARY KEY (job_id);
-CONSTRAINT fk_dep_id_jobs FOREIGN KEY (dep_id) REFERENCES Departments(dep_id);
+ADD CONSTRAINT pk_job_id PRIMARY KEY (job_id);
+ADD CONSTRAINT fk_dep_id_jobs FOREIGN KEY (dep_id) REFERENCES Departments(dep_id);
 
 
 --Insert all entries for all departments

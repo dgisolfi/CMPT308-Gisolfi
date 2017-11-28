@@ -9,7 +9,7 @@ CREATE TABLE Shifts(
 	hours_worked	int		NOT NUll,
 	max_hours		int		NOT NUll);
 
-CONSTRAINT fk_emp_id_shift FOREIGN KEY (emp_id) REFERENCES shifts(emp_id);
+ADD CONSTRAINT fk_emp_id_shift FOREIGN KEY (emp_id) REFERENCES shifts(emp_id);
 
 
 INSERT INTO shifts (emp_id, requested_hours, hours_worked, max_hours)

@@ -9,8 +9,8 @@ CREATE TABLE Staff(
 	staff_fname		VARCHAR2(20)	NOT NUll,
 	staff_lname		VARCHAR2(20)	NOT NUll);
 
-CONSTRAINT pk_staff_id PRIMARY KEY (staff_id);
-CONSTRAINT fk_job_id_staff FOREIGN KEY (job_id) REFERENCES jobs(job_id);
+ADD CONSTRAINT pk_staff_id PRIMARY KEY (staff_id);
+ADD CONSTRAINT fk_job_id_staff FOREIGN KEY (job_id) REFERENCES jobs(job_id);
 
 INSERT INTO Staff (staff_id, job_id, stu_fname, stu_lname)
 	VALUES (1, 1, 'Nick', 'Smith');

@@ -9,8 +9,8 @@ CREATE TABLE Devices(
 	dev_type	VARCHAR2(20)	NOT NUll,
 	dev_serial	VARCHAR2(20)	NOT NUll);
 
-CONSTRAINT pk_dev_id PRIMARY KEY (dev_id);
-CONSTRAINT fk_staff_id_dev FOREIGN KEY (staff_id) REFERENCES Staff(staff_id);
+ADD CONSTRAINT pk_dev_id PRIMARY KEY (dev_id);
+ADD CONSTRAINT fk_staff_id_dev FOREIGN KEY (staff_id) REFERENCES Staff(staff_id);
 
 INSERT INTO shifts (dev_id, staff_id, dev_type, dev_serial)
 	VALUES (1, 1, 'Desktop', 'F3K8D7B5');

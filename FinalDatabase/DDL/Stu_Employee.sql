@@ -11,8 +11,8 @@ CREATE TABLE Stu_Employee(
 	stu_lname		VARCHAR2(20)	NOT NUll,
 	stu_status		SET('resident','commuter') NOT NULL,);
 
-CONSTRAINT pk_emp_id PRIMARY KEY (emp_id);
-CONSTRAINT fk_job_id_emp FOREIGN KEY (job_id) REFERENCES jobs(job_id);
+ADD CONSTRAINT pk_emp_id PRIMARY KEY (emp_id);
+ADD CONSTRAINT fk_job_id_emp FOREIGN KEY (job_id) REFERENCES jobs(job_id);
 CONSTRAINT fk_manager_id_emp FOREIGN KEY (manager_id) REFERENCES Staff(staff_id);
 
 INSERT INTO Stu_Employee (emp_id, job_id, manager_id, stu_fname, stu_lname, stu_status)

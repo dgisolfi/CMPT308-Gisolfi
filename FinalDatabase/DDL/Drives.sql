@@ -9,8 +9,8 @@ CREATE TABLE Drives(
 	drive_name		VARCHAR2(20)	NOT NUll,
 	max_storage		VARCHAR2(20)	NOT NUll);
 
-CONSTRAINT pk_drive_id PRIMARY KEY (drive_id);
-CONSTRAINT fk_dep_id_drive FOREIGN KEY (dep_id) REFERENCES Departments(dep_id);
+ADD CONSTRAINT pk_drive_id PRIMARY KEY (drive_id);
+ADD CONSTRAINT fk_dep_id_drive FOREIGN KEY (dep_id) REFERENCES Departments(dep_id);
 
 
 INSERT INTO Drives (drive_id, dep_id, drive_name, max_storage)
