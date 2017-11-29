@@ -3,6 +3,14 @@
 --Author: Daniel Gisolfi
 --DB Management Final Project
 
-SELECT Amends.Salary
-FROM  Amends
-WHERE job.id = 6;
+SELECT DISTINCT Departments.dep_name
+FROM Departments
+WHERE NOT EXISTS
+	(SELECT *
+	FROM  Jobs
+    AND  EXISTS
+		(SELECT *
+		FROM Student_Employee
+		WHERE  
+		AND 
+		AND ));

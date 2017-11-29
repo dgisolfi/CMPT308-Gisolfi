@@ -11,4 +11,5 @@ AND jobs.job_id = Stu_Employee.job_id
 AND jobs.job_id = Staff.job_id
 AND Staff.staff_id = User_act.staff_user_id
 AND Stu_Employee.emp_id = User_act.emp_user_id
+AND Jobs.job_id > 6;
 
