@@ -1,9 +1,10 @@
 --Query6.sql
---Right join
+--Full outer join
 --Author: Daniel Gisolfi
 --DB Management Final Project
 
-SELECT DISTINCT Stu_Employee, User_act
-FROM Stu_Employee RIGHT JOIN User_act 
-ON Stu_Employee.emp_id = User_act.user_id
-Order BY User_act.user_id;
+--Get the names of all people woith jobs at marist divided by if there a student employee or staff
+
+SELECT DISTINCT Stu_Employee.stu_lname, Staff.staff_lname
+FROM Stu_Employee FULL OUTER JOIN Staff 
+ON Stu_Employee.job_id = Staff.job_id;

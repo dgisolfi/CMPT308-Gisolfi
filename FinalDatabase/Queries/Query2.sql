@@ -1,11 +1,17 @@
 --Query2.sql
---Get All 
+--Get Only
 --Author: Daniel Gisolfi
 --DB Management Final Project
 
-SELECT DISTINCT Staff_lname
-FROM Staff
-WHERE NOT EXISTS
+
+SELECT DISTINCT Departments.dep_name
+FROM Departments
+WHERE EXISTS
 	(SELECT *
-	FROM 	Devices
-	WHERE	dev_type = 'Laptop')
+	FROM  Jobs
+    AND  NOT EXISTS
+		(SELECT *
+		FROM Student_Employee
+		WHERE  Departments.dep_id = jobs.dep_id
+		AND jobs.job_id = Student_Employee.jobs_id
+		AND Student_Employee.student_lname = 'Gisolfi'));

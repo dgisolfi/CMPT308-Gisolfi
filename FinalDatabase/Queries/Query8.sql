@@ -1,9 +1,13 @@
 --Query8.sql
---Full outer join
+--Query of Lab 2 or 3 level
 --Author: Daniel Gisolfi
 --DB Management Final Project
 
-SELECT Departments.dep_name, jobs.job_name, Amends.salary
-FROM Departments, jobs, Amends, staff, Stu_Employee,User_act
-WHERE Departments.dep_id = jobs.job_id
-AND jobs.job_id = Amends.job_id
+--Get the number of hours still nbeeded to be worked by an employee to reach requsted hours as well as there name
+
+SELECT Stu_Employee.stu_lname, SUM(Shifts.requested_hours - Shifts.hours_worked)
+FROM Stu_Employee, Shifts
+WHERE Shifts.hours_worked < Shifts.requested_hours
+AND Stu_Employee.emp_id = Shifts.emp_id
+GROUP BY Stu_Employee.stu_lname;
+

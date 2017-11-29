@@ -3,13 +3,17 @@
 --Author: Daniel Gisolfi
 --DB Management Final Project
 
-SELECT Stu_Employee.stu_lname
-FROM Stu_Employee
+#Name every job that has an employee who works more than 10 hours
+SELECT jobs.job_name
+FROM jobs
 WHERE NOT EXISTS
 	(SELECT *
-	FROM User_act
-	WHERE NOT EXISTS
+	FROM Stu_Employee
+    WHERE Jobs.job_id = Stu_Employee.job_id
+	AND NOT EXISTS
 		(SELECT *
-		FROM 	Drives 
-		WHERE  Stu_Employee.emp_id = User_act.user_id
-		AND 	Drives.dep_id = 2));
+		FROM Shifts
+		WHERE  Stu_Employee.emp_id = Shifts.emp_id
+		AND   Shifts.Requested_worked > 10));
+        
+        
