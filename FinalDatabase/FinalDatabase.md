@@ -4,6 +4,8 @@
 
 ## Database Description
 
+I have chosen to create a relational database of the department I work in, Marist college IT.  
+
 ### Business Rules
 
 * Within the IT Department there are sub-departments, each sub-department has a building location, room number, and name
@@ -17,7 +19,7 @@
 * Everyone whether student employee or staff have a user account, the username is set as there last name and they set there own password
 * All user accounts can be given access to drives, drives have a name and a maximum storage that cannot be exceeded(it can be increased, however)
 
-I have chosen to create a relational database of the department I work in, Marist college IT. As of right now, I have ten tables within the entity relationship diagram. The first is the department's table which describes the id and name of each sub-department of Information technology at Marist. For each sub-department, there are jobs which exits within this table the name description and id of each job is stored. All jobs have salaries or a wage, this is where there amends table comes into play. Each job has a salary with is recorded in this table. Jobs are split into two groups, both tables, the first is staff level jobs which are full-time staff opposed to student employees who have restrictions on where and when they work. Groups of students makeup parts of sub-departments and are managed by staff of the same or similar departments, this exits within the Managers table. Finally, Both staff and student employees are users of Marist college and are assigned usernames, id’s and set password.
+ As of right now, I have ten tables within the entity relationship diagram. The first is the department's table which describes the id and name of each sub-department of Information technology at Marist. For each sub-department, there are jobs which exits within this table the name description and id of each job is stored. All jobs have salaries or a wage, this is where there amends table comes into play. Each job has a salary with is recorded in this table. Jobs are split into two groups, both tables, the first is staff level jobs which are full-time staff opposed to student employees who have restrictions on where and when they work. Groups of students makeup parts of sub-departments and are managed by staff of the same or similar departments, this exits within the Managers table. Finally, Both staff and student employees are users of Marist college and are assigned usernames, id’s and set password.
 
 There are two tables that stem off of student employee, shifts and projects. The shift table defines the hours that an employee has and the max hours that employee can work as it can vary. The projects table defines what the current project if any is assigned to a student employee as well as the name of that project.
 
