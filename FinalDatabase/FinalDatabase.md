@@ -12,7 +12,7 @@ For staff, there is a unique table for them exclusively, the devices table. This
 
 This Database is a good representation of how the Information department currently is set up and operates, this will help in developing a working database that corresponds to this diagram.
 
-##ER Diagram
+## ER Diagram
 
 ![ERD](file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/ChenFinalERD.png)
 
