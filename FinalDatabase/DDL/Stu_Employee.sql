@@ -9,11 +9,13 @@ CREATE TABLE Stu_Employee(
 	manager_id		int 			NOT NULL,
 	stu_fname		VARCHAR2(20)	NOT NUll,
 	stu_lname		VARCHAR2(20)	NOT NUll,
+	prj_id			int,
 	stu_status		SET('resident','commuter') NOT NULL,);
 
 ADD CONSTRAINT pk_emp_id PRIMARY KEY (emp_id);
 ADD CONSTRAINT fk_job_id_emp FOREIGN KEY (job_id) REFERENCES jobs(job_id);
-CONSTRAINT fk_manager_id_emp FOREIGN KEY (manager_id) REFERENCES Staff(staff_id);
+ADD CONSTRAINT fk_manager_id_emp FOREIGN KEY (manager_id) REFERENCES Staff(staff_id);
+ADD CONSTRAINT fk_prj_id FOREIGN KEY (prj_id) REFERENCES Projects(prj_id) 
 
 INSERT INTO Stu_Employee (emp_id, job_id, manager_id, stu_fname, stu_lname, stu_status)
 	VALUES (1, 2, 1, 'Ian', 'Smith', 'resident');
@@ -35,5 +37,7 @@ INSERT INTO Stu_Employee (emp_id, job_id, manager_id, stu_fname, stu_lname, stu_
 	VALUES (9, 16, 9, 'Nicole', 'Ferone', 'resident');
 INSERT INTO Stu_Employee (emp_id, job_id, manager_id, stu_fname, stu_lname, stu_status)
 	VALUES (10, 18, 10, 'James', 'Corcoran', 'commuter');
+INSERT INTO Stu_Employee (emp_id, job_id, manager_id, stu_fname, stu_lname, stu_status)
+	VALUES (11, 4, 2, 'Gerald', 'Hawthorne', 'commuter');
 
 

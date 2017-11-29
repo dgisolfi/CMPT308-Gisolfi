@@ -3,15 +3,12 @@
 --Author: Daniel Gisolfi
 --DB Management Final Project
 
+--Get the last name of students who only work 17 hours
 
-SELECT DISTINCT Departments.dep_name
-FROM Departments
+SELECT Stu_Employee.stu_lname
+FROM Stu_Employee
 WHERE EXISTS
 	(SELECT *
-	FROM  Jobs
-    AND  NOT EXISTS
-		(SELECT *
-		FROM Student_Employee
-		WHERE  Departments.dep_id = jobs.dep_id
-		AND jobs.job_id = Student_Employee.jobs_id
-		AND Student_Employee.student_lname = 'Gisolfi'));
+	FROM Shifts
+	WHERE Shifts.requested_hours = 17
+    AND Shifts.emp_id = Stu_Employee.emp_id); 

@@ -32,3 +32,5 @@ INSERT INTO shifts (emp_id, requested_hours, hours_worked, max_hours)
 	VALUES (9, 10, 4, 20);
 INSERT INTO shifts (emp_id, requested_hours, hours_worked, max_hours)
 	VALUES (10, 13, 9, 20);
+INSERT INTO shifts (emp_id, requested_hours, hours_worked, max_hours)
+	VALUES (11, 17, 7, 20);

@@ -10,8 +10,8 @@ CREATE TABLE User_Act(
 	user_name		VARCHAR2(20)	NOT NUll,
 	user_pass		VARCHAR2(20)	NOT NUll);
 
-CONSTRAINT fk_staff_user_id FOREIGN KEY (staff_user_id) REFERENCES Staff(staff_id);
-CONSTRAINT fk_emp_user_id FOREIGN KEY (emp_user_id) REFERENCES Stu_Employee(emp_id);
+ADD CONSTRAINT fk_staff_user_id FOREIGN KEY (staff_user_id) REFERENCES Staff(staff_id);
+ADD CONSTRAINT fk_emp_user_id FOREIGN KEY (emp_user_id) REFERENCES Stu_Employee(emp_id);
 
 --input staff
 INSERT INTO User_Act (staff_user_id, drive_access, user_name, user_pass)
@@ -56,7 +56,8 @@ INSERT INTO User_Act (emp_user_id, drive_access, user_name, user_pass)
 	VALUES (9, 5, 'Nicole', '******');
 INSERT INTO User_Act (emp_user_id, drive_access, user_name, user_pass)
 	VALUES (10, 7, 'James', '******');
-
+INSERT INTO User_Act (emp_user_id, , user_name, user_pass)
+	VALUES (11, 'Gerald', '******');
 
 
 

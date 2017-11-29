@@ -4,7 +4,7 @@
 
 ## Database Description
 
-I have chosen to create a relational database of the department I work in, Marist college IT.  
+I have chosen to create a relational database of the department I work in, Marist college IT. The IT department at Marist is a perfect example of a database as there are many groups of people who interact with each other and have different access, managers, and pay. The department itself has many sub-departments that work as small pieces in the main IT department. It will be useful to represent these small sub-departments as well as their relationships with the college, technology, and others. This Database is a good representation of how the Information department currently is set up and operates, this will help in developing a working database that corresponds to this diagram.
 
 ### Business Rules
 
@@ -16,20 +16,14 @@ I have chosen to create a relational database of the department I work in, Maris
 * Student employees are assigned shifts and can only work a set amount of hours usually 20 and request a number of hours they would like to work
 * Student employees are assigned projects that have set names and descriptions
 * Staff may be deployed a device which has a serial and is either a desktop or laptop
-* Everyone whether student employee or staff have a user account, the username is set as there last name and they set there own password
+* Everyone whether student employee or staff have a user account, the username is set as there first name and they set there own password
 * All user accounts can be given access to drives, drives have a name and a maximum storage that cannot be exceeded(it can be increased, however)
 
- As of right now, I have ten tables within the entity relationship diagram. The first is the department's table which describes the id and name of each sub-department of Information technology at Marist. For each sub-department, there are jobs which exits within this table the name description and id of each job is stored. All jobs have salaries or a wage, this is where there amends table comes into play. Each job has a salary with is recorded in this table. Jobs are split into two groups, both tables, the first is staff level jobs which are full-time staff opposed to student employees who have restrictions on where and when they work. Groups of students makeup parts of sub-departments and are managed by staff of the same or similar departments, this exits within the Managers table. Finally, Both staff and student employees are users of Marist college and are assigned usernames, id’s and set password.
 
-There are two tables that stem off of student employee, shifts and projects. The shift table defines the hours that an employee has and the max hours that employee can work as it can vary. The projects table defines what the current project if any is assigned to a student employee as well as the name of that project.
-
-For staff, there is a unique table for them exclusively, the devices table. This table exists to keep track of all assigned devices to staff only as well as there details in order to keep track of them and be available for repair.
-
-This Database is a good representation of how the Information department currently is set up and operates, this will help in developing a working database that corresponds to this diagram.
 
 ## ER Diagram
 
-![ERD](https://github.com/dgisolfi/CMPT308-Gisolfi/blob/master/FinalDatabase/ChenFinalERD.png)
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/ChenFinalERD.png" height="500px" />
 
 ## Table Definitions
 
@@ -435,9 +429,9 @@ INSERT INTO Staff (staff_id, job_id, stu_fname, stu_lname)
 --DB Management Final Project
 
 CREATE TABLE Stu_Employee(
-    emp_id            int                NOT NULL,
-    job_id             int                NOT NULL,
-    manager_id        int             NOT NULL,
+    emp_id            int            NOT NULL,
+    job_id            int            NOT NULL,
+    manager_id        int            NOT NULL,
     stu_fname        VARCHAR2(20)    NOT NUll,
     stu_lname        VARCHAR2(20)    NOT NUll,
     stu_status        SET('resident','commuter') NOT NULL,);
@@ -466,6 +460,8 @@ INSERT INTO Stu_Employee (emp_id, job_id, manager_id, stu_fname, stu_lname, stu_
     VALUES (9, 16, 9, 'Nicole', 'Ferone', 'resident');
 INSERT INTO Stu_Employee (emp_id, job_id, manager_id, stu_fname, stu_lname, stu_status)
     VALUES (10, 18, 10, 'James', 'Corcoran', 'commuter');
+INSERT INTO Stu_Employee (emp_id, job_id, manager_id, stu_fname, stu_lname, stu_status)
+	VALUES (11, 4, 2, 'Gerald', 'Hawthorne', 'commuter');
 ```
 
 
@@ -474,7 +470,7 @@ INSERT INTO Stu_Employee (emp_id, job_id, manager_id, stu_fname, stu_lname, stu_
 
 **3NF Justification** - This table has 2 possible keys either emp_id or staff_id which depends on their job in the jobs table. Additionally, the transitive and partial dependencies have been removed making it a table in 3rd normal form.
 
-**Table description** - All student employees and staff are users, each with their own account, the username is derived from there last name and the password is created by the user they would be hashed and salted but for now I left them as astricts as there is no need to retrieve them. Additionally, most users have access to at least one drive if not more so the access is stored in this table as well.
+**Table description** - All student employees and staff are users, each with their own account, the username is derived from there first name and the password is created by the user they would be hashed and salted but for now I left them as astricts as there is no need to retrieve them. Additionally, most users have access to at least one drive if not more so the access is stored in this table as well.
 
 ```sql
 --User_Act.sql
@@ -535,13 +531,13 @@ INSERT INTO User_Act (emp_user_id, drive_access, user_name, user_pass)
     VALUES (9, 5, 'Nicole', '******');
 INSERT INTO User_Act (emp_user_id, drive_access, user_name, user_pass)
     VALUES (10, 7, 'James', '******');
+INSERT INTO User_Act (emp_user_id, , user_name, user_pass)
+	VALUES (11, 'Gerald', '******');
 ```
 
 
 
 ## Queries
-
-
 
 ### Query 1
 
@@ -563,39 +559,53 @@ WHERE NOT EXISTS
 
 **Result**
 
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query1.png" height="300px" />
 
-
-**Cardinality** =
+**Cardinality** = 14
 
 ### Query 2
 
-
+Get the last name of students who only work 17 hours
 
 ```sql
-
+SELECT Stu_Employee.stu_lname
+FROM Stu_Employee
+WHERE EXISTS
+	(SELECT *
+	FROM Shifts
+	WHERE Shifts.requested_hours = 17
+    AND Shifts.emp_id = Stu_Employee.emp_id); 
 ```
 
-**Result**
+**Result** 
+
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query2.png" height="200px" />
 
 
 
-**Cardinality** =
+**Cardinality** = 3
 
 
 
 ### Query 3
 
-
+Name the students who do not have access to a drive
 
 ```sql
-
+SELECT Stu_Employee.stu_lname
+FROM Stu_Employee
+WHERE EXISTS
+    (SELECT *
+    FROM User_act
+    WHERE drive_access IS NULL
+    AND Stu_Employee.emp_id = User_act.emp_user_id);
 ```
 
 **Result**
 
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query3.png" height="100px" />
 
-
-**Cardinality** =
+**Cardinality** = 1
 
 
 
@@ -611,9 +621,9 @@ ON Stu_Employee.emp_id = Projects.emp_id;
 
 **Result**
 
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query4.png" height="300px" />
 
-
-**Cardinality** =
+**Cardinality** = 11
 
 
 
@@ -629,9 +639,9 @@ ON Stu_Employee.emp_id = User_act.emp_user_id;
 
 **Result**
 
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query5.png" height="400px" />
 
-
-**Cardinality** =
+**Cardinality** =18
 
 ### Query 6
 
@@ -645,23 +655,32 @@ ON Stu_Employee.job_id = Staff.job_id;
 
 **Result**
 
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query6.png" height="400px" />
 
 
-**Cardinality** =
+
+**Cardinality** = 20
 
 ###Query 7
 
-
+Get the Department, Job, salary, user_name and device type deployed to them for all staff with an ID grater than 5
 
 ```sql
-
+SELECT Departments.dep_name, jobs.job_name, Amends.salary, User_act.user_name, devices.dev_type
+FROM Departments, jobs, Amends, staff, User_act, Devices
+WHERE Departments.dep_id = jobs.dep_id
+AND jobs.job_id = Amends.job_id
+AND jobs.job_id = Staff.job_id
+AND Staff.staff_id = User_act.staff_user_id
+AND Devices.staff_id = staff.staff_id
+AND Staff.staff_id > 5;
 ```
 
 **Result**
 
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query7.png" height="100px" />
 
-
-**Cardinality** =
+**Cardinality** = 4
 
 ###Query 8
 
@@ -677,9 +696,9 @@ GROUP BY Stu_Employee.stu_lname;
 
 **Result**
 
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query8.png" height="300px" />
 
-
-**Cardinality** =
+**Cardinality** = 10
 
 ###Query 9
 
@@ -699,9 +718,9 @@ WHERE Jobs.job_id = Staff.job_id;
 
 **Result**
 
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query9.png" height="400px" />
 
-
-**Cardinality** =
+**Cardinality** = 20
 
 ### Query 10
 
@@ -725,6 +744,6 @@ Order By LastName;
 
 **Result**
 
+<img src="file:///Users/daniel/code-repos/CMPT308-Gisolfi/FinalDatabase/Queries/Results/Query10.png" height="500px" />
 
-
-**Cardinality** =
+**Cardinality** = 19
